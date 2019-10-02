@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:MobileTemplate.UI.Pages;assembly=MobileTemplate"
+             xmlns:controls="clr-namespace:MobileTemplate.UI.Controls"
+			 x:Class="MobileTemplate.UI.Pages.Main.MainPage"
+             Title="Binwell University">
+    <ContentPage.Content>
+	    <controls:StateContainer State="{Binding State}">
+
+		    <controls:StateCondition State="Loading">
+			    <ActivityIndicator IsRunning="True" WidthRequest="40"
+			                       HorizontalOptions="Center" VerticalOptions="Center"/>
+		    </controls:StateCondition>
+
+		    <controls:StateCondition State="Normal">
+			    <StackLayout>
+				    <Label Text="Welcome to Binwell University!"
+				           VerticalOptions="CenterAndExpand" 
+				           HorizontalOptions="CenterAndExpand" />
+				    <Label Text="{Binding SampleObject.Description}" 
+				           VerticalOptions="CenterAndExpand" 
+				           HorizontalOptions="CenterAndExpand"/>
+				    <Image HorizontalOptions="Center" VerticalOptions="Center"
+				           WidthRequest="300" HeightRequest="300"
+				           Source="{Binding SampleObject.ImageUrl}"/>
+					 <Button Text="Show Alert"
+							 Command="{Binding SampleCommand}"
+					           VerticalOptions="CenterAndExpand" 
+					           HorizontalOptions="CenterAndExpand"/>
+			    </StackLayout>
+		    </controls:StateCondition>
+
+		    <controls:StateCondition State="Error">
+			    <StackLayout>
+				    <Label Text="Ошибка загрузки данных" />
+			    </StackLayout>
+		    </controls:StateCondition>
+	    </controls:StateContainer>
+    </ContentPage.Content>
+</pages:BasePage>
